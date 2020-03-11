@@ -57,6 +57,9 @@ def main():
     a_val = input('enter a:')
     b_val = input('enter b:')
     #print(a_val, b_val)
+    maxVal = 0
+    max_base = ""
+    max_abs = ""
     while(cur_iterations < max_iterations):
         base_str = orig_base_str
         set_of_rules = generate_rule_set(read_rules())
@@ -68,17 +71,27 @@ def main():
             base_str = updated
         cur_iterations+=1
 
+        #print(base_str)
+        # print(eval(base_str))
         abs_wrapped = 'abs(' + base_str + ')'
-        max_base_str = str(max_pushups) + ' if (' + abs_wrapped + ') > ' + str(max_pushups) + ' else ' + abs_wrapped
-        # print(max_base_str)
-        ret_str = "print('pushups: '," + max_base_str +')'
-        baby_str = "print('pushups: '," + base_str +')'
+        max_base_str = str(max_pushups) + ' if (' + str(eval(abs_wrapped)) + ') > ' + str(max_pushups) + ' else ' + str(eval(abs_wrapped))
+        #print(max_base_str)
+        value = eval(max_base_str)
+        if value > maxVal:
+            maxVal = value
+            max_abs = max_base_str
+            max_base = base_str
+        # ret_str = "print('pushups: '," + max_base_str +')'
+        # baby_str = "print('pushups: '," + base_str +')'
         #print(ret_str)
         # print('absolute and max value')
-        exec(ret_str)
+        # exec(ret_str)
         # print('regular')
         # exec(baby_str)
     
+    print(max_base)
+    print(max_abs)
+    print('pushups: ', maxVal)
     
     
 

@@ -51,7 +51,7 @@ def generate_rule_set(rule_dict):
 def main():
     set_of_rules = generate_rule_set(read_rules())
     orig_base_str = 's'
-    max_iterations = 3
+    max_iterations = 5
     cur_iterations = 0
     max_pushups = 30
     a_val = input('enter a:')
@@ -60,6 +60,7 @@ def main():
     maxVal = 0
     max_base = ""
     max_abs = ""
+    val_array = []
     while(cur_iterations < max_iterations):
         base_str = orig_base_str
         set_of_rules = generate_rule_set(read_rules())
@@ -73,10 +74,11 @@ def main():
 
         #print(base_str)
         # print(eval(base_str))
-        abs_wrapped = 'abs(' + base_str + ')'
+        abs_wrapped = 'int(abs(' + base_str + '))'
         max_base_str = str(max_pushups) + ' if (' + str(eval(abs_wrapped)) + ') > ' + str(max_pushups) + ' else ' + str(eval(abs_wrapped))
         #print(max_base_str)
         value = eval(max_base_str)
+        val_array.append((int(value), max_base_str, base_str))
         if value > maxVal:
             maxVal = value
             max_abs = max_base_str
@@ -89,11 +91,16 @@ def main():
         # print('regular')
         # exec(baby_str)
     
+    print('max:')
     print(max_base)
     print(max_abs)
-    print('pushups: ', maxVal)
-    
-    
+    print('pushups: ', int(maxVal))
+    print('\n\nmedian:')
+    val_array.sort()
+
+    median_val = val_array[int(len(val_array) / 2)]
+    for item in median_val:
+        print(item)
 
 if __name__ == "__main__":
     main()

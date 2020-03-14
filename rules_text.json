@@ -1,7 +1,7 @@
 {"rules": 
     [
-        {"statement": "s", "replacements": ["t", "s+s", "s-s", "s * s"], "max_gen": 5},
-        {"statement": "t", "replacements": ["n", "max(n, n)", "n * n"], "max_gen": 100},
-        {"statement": "n", "replacements": ["a", "b"], "max_gen": 100}
+        {"statement": "s", "replacements": ["t", "s+s", "s-s", "s * s", "s / s"], "max_gen": 5},
+        {"statement": "t", "replacements": ["l", "max(l, l)", "l + l", "min(l, l)"], "max_gen": 100},
+        {"statement": "l", "replacements": ["a", "b"], "max_gen": 100}
     ]
 }
